@@ -12,8 +12,11 @@ Both big music fans, we aimed at cracking the code of the concert industry and s
 Convinced by the potential relevance of our work, we have decided to keep our code private **for now**. However, we outline our approach and our findings in this report as follows:
 
 _**[1. Data Scraping](#scraping)
+
 [2. Data Processing & Feature Engineering](#processing)
+
 [3. Finding the Best Model](#model)
+
 [4. Final Results](#results)**_
 
 ## 1. Data Scraping <a name="scraping"></a>
