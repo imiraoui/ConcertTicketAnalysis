@@ -71,6 +71,7 @@ In the end, we settled on LightGBM. LightGBM provided with numerous advantages i
 ## 4. Final Results <a name="results"></a>
 
 <iframe src="/assets/model_perfs.html"> </iframe>
+
 ### Sources (sources dans markdown???)
 
 - [The Independent - Ed Sheeran](https://www.independent.ie/entertainment/ed-sheeran-tickets-sold-out-in-under-five-minutes-35417761.html)
