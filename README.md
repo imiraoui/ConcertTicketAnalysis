@@ -96,8 +96,8 @@ Initially, we thought that most of the concerts that sold out did so right after
 
 ## 3. Finding the Best Model <a name="model"></a>
 
-We aimed at optimizing the ability of our model to correctly predict that a concert would sell out. In that regard, we focused on maximizing **Precision** (defined as 
-$$\frac{True Positive}{True Positive + False Positive}$$ ).
+We aimed at optimizing the ability of our model to correctly predict that a concert would sell out. In that regard, we focused on maximizing **Precision** that is defined as:
+![Precision Latex](https://latex.codecogs.com/svg.latex?Precision=\frac{TruePositive}{TruePositive+FalsePositive})
 
 We started by using a logistic regression and found the following results:
 
