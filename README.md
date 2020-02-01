@@ -17,7 +17,7 @@ _**[2. Data Processing & Feature Engineering](#processing)**_
 
 _**[3. Finding the Best Model](#model)**_
 
-_**[4. Final Results](#results)**_
+_**[4. Final Results & Dashboard](#results)**_
 
 ## 1. Data Scraping <a name="scraping"></a>
 
@@ -39,10 +39,10 @@ We hypothesized that most of the popular events and the demand was centered arou
 
 ## 2. Data Processing & Feature Engineering <a name="processing"></a>
 
-### Data Cleaning 
+### Data Cleaning & Processing
 
 #### Merging the Datasets and matching the strings
-Given the variety of sources that we used we faced numerous problems in aggregating our datasets. One of our main problem was in **reconciliating the different concerts and making sure that the string matched appropriately.**
+Given the variety of sources that we used we faced numerous problems in aggregating our datasets. One of our main problem, besides the diversity in format among the various sources, was in **reconciliating the different concerts and making sure that the string matched appropriately.**
 
 Some artists' names are rather ambiguous (i.e. [The Blaze](https://open.spotify.com/artist/1Dt1UKLtrJIW1xxRBejjos?si=q-pILVELSlCO6iOFa1kiPg) is very very different from [Blaze](https://open.spotify.com/artist/5yK5YSsWKH35QRTsHQHxEN?si=fczjQ-m1Sp62ikfH3gJMFA)) and required the utmost attention as we navigate through the different APIs.  
 
@@ -56,36 +56,60 @@ An additional challenge we faced was to aggregate our observations accordingly. 
 
 We seeked to collect data regarding the secondary markets and quickly noticed that the task was more difficult than it seemed. Some artists performed twice a day in a given city, parking passes were sold for some events, etc. We thus created stringent criteria so as to guarantee that our datasets would remain as accurate as possible.
 
+
+### Dealing with High Dimensions
+
+There are countless different venues and music types represented in our dataset. To incorporate a maximum of informations from these, we attempted various clustering techniques such as K-Means or using proxy variables such as the number of seats or latitudes/longitudes. Ultimately, we settled on leveraging Multiple Correspondance Analysis (MCA) has it allowed us to reduce significantly the number of dimensions while keeping the unique information embedded in the venue/the genre itself.
+
+
 ### Exploratory Data Analysis
 
 Armed with our dataset and **70+ features**, we tried to get a grasp of some underlying dynamics. 
 
+### Correlation & VIF Analysis
 
-VIF / Correlation heatmaps
-Creating new Variables / Feature Engineering
-MCA
+As we tried to understand what were the key drivers of concerts' popularity, we started by looking at how correlated our variables were. 
 
-### Visualizing Concerts
+Aside from songs' internal characteristics and popularity indicators, our variables seem to be relatively uncorrelated and we were able to weed out redundant information from the dataset.
+
+![Correlation Matrix](assets/img/correlation_matrix.jpg)
+
+**VIF conclusions to add**
+
+### Going Beyond our Prejudice
 
 Interestingly, regardless of the urban areas, **~6%** of concerts eventually sell out. 
 
+While we may have expected that concerts sell-out primarily around the weekend, our analysis also indicates that sell-out rates are relatively uniform through the week days.
+
 ![Proportion of sold out concerts per day of the week](assets/img/week_day.jpg)
 
-Tracking sold outs across time (graphs with distributions?)
-
+**Add: Tracking sold outs across time (graphs with distributions used in the dashboard to show how long it took to sell out vs how long before a concert)!!**
 
 ## 3. Finding the Best Model <a name="model"></a>
 
-We aimed at optimizing the ability of our model to correctly predict that a concert would sell out. In that regard, we tried to maximize **Precision** (defined as $\frac{True Positive}{True Positive + False Positive}$).
+We aimed at optimizing the ability of our model to correctly predict that a concert would sell out. In that regard, we focused on maximizing **Precision** (defined as $\frac{True Positive}{True Positive + False Positive}$ ).
+
+We started by using a logistic regression and found the following results:
 
 
-In the end, we settled on LightGBM. LightGBM provided with numerous advantages including:
+
+
+## 4. Final Results & Dashboard <a name="results"></a>
+
+In the end, we settled on using LightGBM. It provided us with numerous advantages including:
 - Simplified class imbalance management
 - Efficient runtime
 - Advanced categorical variable handling
 - Ability to model complex nonlinear relationships
 
-## 4. Final Results <a name="results"></a>
+### Hyperparameter Tuning
+
+Being a boosting model, LightGBM We used Bayesian optimization techniques to find the optimal parameters .
+
+### TKinter and Dash
+
+## Conclusion
 
 
 
