@@ -147,4 +147,4 @@ We are convinced that this project could have important consequences on the musi
 
 ### Sources
 
-- [The Independent - Ed Sheeran](https://www.independent.ie/entertainment/ed-sheeran-tickets-sold-out-in-under-five-minutes-35417761.html)
+- [Ed Sheeran tickets SOLD OUT in under five minutes - *The Independent* (Feb 2017)](https://www.independent.ie/entertainment/ed-sheeran-tickets-sold-out-in-under-five-minutes-35417761.html)
