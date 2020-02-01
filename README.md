@@ -74,7 +74,9 @@ Aside from songs' internal characteristics and popularity indicators, our variab
 
 ![Correlation Matrix](assets/img/correlation_matrix.jpg)
 
-**VIF conclusions to add**
+Since pairwise-correlation is insufficient to visualize multicollinearity, we also used VIF analysis to better understand redundancies. 
+
+**We found that ... - VIF conclusions to add**
 
 ### Going Beyond our Prejudice
 
@@ -84,7 +86,13 @@ While we may have expected that concerts sell-out primarily around the weekend, 
 
 ![Proportion of sold out concerts per day of the week](assets/img/week_day.jpg)
 
-**Add: Tracking sold outs across time (graphs with distributions used in the dashboard to show how long it took to sell out vs how long before a concert)!!**
+Initially, we thought that most of the concerts that sold out did so right after sales were released. However, as the graph below highlights it, the rate of sell-out seems to follow an exponential distribution.
+
+**Add: graphs with distributions used in the dashboard to show how long it took to sell out AND how long before a concert!!**
+
+### Visualizing distributions
+
+**Insert graphs generated a while back visualizing distributions**
 
 ## 3. Finding the Best Model <a name="model"></a>
 
@@ -92,8 +100,11 @@ We aimed at optimizing the ability of our model to correctly predict that a conc
 
 We started by using a logistic regression and found the following results:
 
+**ADD RESULTS LOGISTIC**
 
+We later attempted to improve our results by leveraging a Random Forest.
 
+**ADD RESULTS RF**
 
 ## 4. Final Results & Dashboard <a name="results"></a>
 
@@ -105,13 +116,34 @@ In the end, we settled on using LightGBM. It provided us with numerous advantage
 
 ### Hyperparameter Tuning
 
-Being a boosting model, LightGBM We used Bayesian optimization techniques to find the optimal parameters .
+Being a boosting model, LightGBM has plenty of hyperparameters. We used Bayesian optimization techniques to find their optimal values.
 
-### TKinter and Dash
+Leveraging the [Hyperopt Python Library](https://github.com/hyperopt/hyperopt) and LightGBM built-in cross-validation tool, we assessed the various hyperparameters and settled on the ones that would maximize our Area Under the Curve.
+
+### Results
+
+With our tuned LightGBM, we were able to get the following results on *February 2nd, 2020*: 
+
+**Insert confusion matrix and 2 graphs**
+
+*Note: As we are constantly getting new data, our model is still improving!*
+### TkInter & Dash
+
+To visualize and simplify interactions with our datasets, we created a dashboard. 
+
+We started building a TkInter tool that would allow us to aggregate our data sources, run the model, and visualize concertts very likely to sell out. We added various features such as the number of sold-out concerts an artist currently had planned.
+
+We also developed a portfolio management tool that allowed users to track potential purchases and current resale prices so as to facilitate hypothetical trading.
+
+However, as TkInter felt a bit heavy on our machines, we decided to create an online dashboard that provided with the same functionalities except that this time would be hosted on a virtual machine using SQL and Dash.
 
 ## Conclusion
 
+While this project was challenging, we have successfully designed a tool that can predict concert selling out with a precision of more than **85%** (a 17x uplift over the naive baseline model).
 
+We are convinced that this project could have important consequences on the music industry as a whole. Beyond revolutionizing the scalping industry, this could become invaluable for artists and concert halls and allow them to price their events much more efficiently. As another example, labels and artists could also use this tool to get a better of sense of performers' popularity and the demand for such events. 
+
+**We are still working on this project so pleasefeel free to contact us if you have any comments or questions!** 
 
 ### Sources
 
