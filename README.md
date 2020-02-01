@@ -11,13 +11,13 @@ Both big music fans, we aimed at cracking the code of the concert industry and s
 
 Convinced by the potential relevance of our work, we have decided to keep our code private **for now**. However, we outline our approach and our findings in this report as follows:
 
-_**[1. Data Scraping](#scraping)
+_**[1. Data Scraping](#scraping)**_
 
-[2. Data Processing & Feature Engineering](#processing)
+_**[2. Data Processing & Feature Engineering](#processing)**_
 
-[3. Finding the Best Model](#model)
+_**[3. Finding the Best Model](#model)**_
 
-[4. Final Results](#results)**_
+_**[4. Final Results](#results)**_
 
 ## 1. Data Scraping <a name="scraping"></a>
 
@@ -58,13 +58,18 @@ We seeked to collect data regarding the secondary markets and quickly noticed th
 
 ### Exploratory Data Analysis
 
+Armed with our dataset and **70+ features**, we tried to get a grasp of some underlying dynamics. 
+
+
 VIF / Correlation heatmaps
 Creating new Variables / Feature Engineering
 MCA
 
 ### Visualizing Concerts
 
-Interestingly, regardless of the urban areas, **~5%** of concerts eventually sell out. 
+Interestingly, regardless of the urban areas, **~6%** of concerts eventually sell out. 
+
+![Proportion of sold out concerts per day of the week](assets/img/week_day.jpg)
 
 Tracking sold outs across time (graphs with distributions?)
 
