@@ -99,9 +99,13 @@ Initially, we thought that most of the concerts that sold out did so right after
 We aimed at optimizing the ability of our model to correctly predict that a concert would sell out. In that regard, we focused on maximizing **Precision** that is defined as:
 ![Precision Latex](https://latex.codecogs.com/svg.latex?Precision=\frac{TruePositive}{TruePositive+FalsePositive})
 
-We started by using a logistic regression and found the following results:
+Each model will predict a probability for a given concert to be soldout. We'll then consider that this concert will be soldout if the probability is larger than a given threshold. Then, for each model we process the accuracy, the precision, the true positive rate and the false positive rate on the test set for all thresholds between 0 and 1. Of course, we use bootstrap in order to know the 95% confidence interval.
 
-**ADD RESULTS LOGISTIC**
+We started by using a basic model, the logistic regression. We found the following results:
+
+![Logistic Regression Results](assets/img/logregres.png)
+
+The results are pretty bad, even if the confidence interval is pretty good.
 
 We later attempted to improve our results by leveraging a Random Forest.
 
