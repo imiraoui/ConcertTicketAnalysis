@@ -106,11 +106,11 @@ To assess a model performance, we measure and bootstrap its precision for variou
 
 ### Logistic Regression
 
-We started by using a very basic mode: the logistic regression. We found the following results:
+We started by using a simple model: Logistic Regression and found the following results:
 
 ![Logistic Regression Results](assets/img/logregres.png)
 
-The colored shadows around the lines are the 95% confidence interval of the mesure, processed with bootstrap methods. The results were really bad, even if the confidence intervals are pretty good. Indeed, the range of probability returned by the logistic regression was not large enough (the model was never sure of a concert ability to soldout), leading our model to predict only "not soldout concert" above a threshold of 0.5.
+We highlighted the 95% confidence interval (found using Bootstrap) of the various metrics with colored shadows around the lines. The results were insufficient. The range of probability returned by the logistic regression was not wide enough (the model was never sure of a concert's ability to soldout), leading our model to predict only "not soldout concert" above a threshold of 0.5. Even applying over/undersampling techniques such as SMOTE did not help the results meaningfully. 
 
 To improve our results, we used a Random Forest:
 
@@ -138,7 +138,7 @@ With our tuned LightGBM, we were able to get the following results on *February 
 
 **Insert confusion matrix and 2 graphs**
 
-*Note: As we are constantly getting new data days after days, our model is still improving!*
+*Note: As we are constantly getting new data on a daily basis, our model is still improving!*
 
 ### Tkinter & Dash
 
