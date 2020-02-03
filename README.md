@@ -5,7 +5,7 @@
 
 Ed Sheeran's last concert sold out within 5 min and was advertised on Viagogo for as high as 800€ soon after (vs 80€ initially). Concert prices can vary wildly depending on the type of event. For some really popular events, primary tickets are almost impossible to get a hold of. Ticket scalping is an industry in and of itself. 
 
-Both big music fans, we aimed at cracking the code of the concert industry and set out to predict what concert would sell out. In front of the diversity of events and artists, we were convinced that data science could prove invaluable in approaching the problem. 
+Both big music fans, we aimed at cracking the code of the concert industry and set out to predict what concert would sell out. In front of the diversity of events and artists, we were convinced that data science could prove invaluable in approaching the problem and provide very actionable insights that could have enduring effects on the music industry. 
 
 **Would we be able to predict whether a concert would sell out? If so, could we predict what's its fair value and its final resale price would be?**
 
@@ -96,14 +96,20 @@ Initially, we thought that most of the concerts that sold out did so right after
 
 ## 3. Finding the Best Model <a name="model"></a>
 
-We aimed at optimizing the ability of our model to correctly predict that a concert would sell out. In that regard, we focused on maximizing **Precision** that is defined as:  
+<<<<<<< HEAD
+We aimed at optimizing the ability of our model to correctly predict that a concert would sell out. We created a "sold-out" variable and encoded it 1 if the concert was sold out and 0 if not. As we aimed to accurately predict concerts that would sell out, we focused on maximizing **Precision**, which is defined as:
   
 <div align="center">
 <img src="https://latex.codecogs.com/svg.latex?Precision=\frac{TruePositive}{TruePositive+FalsePositive}" alt="Precision Latex">
 </div>
+=======
+We aimed at optimizing the ability of our model to correctly predict that a concert would sell out. We created a "sold-out" variable and encoded it 1 if the concert was sold out and 0 if not. As we aimed to accurately predict concerts that would sell out, we focused on maximizing **Precision**, which is defined as:
+![Precision Latex](https://latex.codecogs.com/svg.latex?Precision=\frac{TruePositive}{TruePositive+FalsePositive})
+>>>>>>> 0e9960e00cd0d012567e20ad016e479f85ec5dde
 
-Each model will predict a probability for a given concert to be soldout. We'll then consider that this concert will be soldout if the probability is larger than a given threshold. Then, for each model we process the accuracy, the precision, the true positive rate and the false positive rate on the test set for all thresholds between 0 and 1. Of course, we use bootstrap in order to know the 95% confidence interval.
+To assess a model performance, we measure and bootstrap its precision for various threshold levels.
 
+<<<<<<< HEAD
 ### Logistic Regression
 
 We started by using a very basic mode: the logistic regression. We found the following results:
@@ -111,8 +117,15 @@ We started by using a very basic mode: the logistic regression. We found the fol
 ![Logistic Regression Results](assets/img/logregres.png)
 
 The colored shadows around the lines are the 95% confidence interval of the mesure, processed with bootstrap methods. The results were really bad, even if the confidence intervals are pretty good. Indeed, the range of probability returned by the logistic regression was not large enough (the model was never sure of a concert ability to soldout), leading our model to predict only "not soldout concert" above a threshold of 0.5.
+=======
+We started by using a relatively simple model: Logistic Regression. Given the relative class imbalance, we also used SMOTE on our dataset so as to oversample the minority group and improve performance. We had the following results:
 
-We later attempted to improve our results by leveraging a Random Forest.
+![Logistic Regression Results](assets/img/logregres.png)
+
+These initial resultls however were insufficient to provide any actionable insights on upcoming concerts so we started implementing more complex models. 
+>>>>>>> 0e9960e00cd0d012567e20ad016e479f85ec5dde
+
+To improve our results, we used a Random Forest:
 
 ### Random Forest
 
@@ -138,9 +151,15 @@ With our tuned LightGBM, we were able to get the following results on *February 
 
 **Insert confusion matrix and 2 graphs**
 
+<<<<<<< HEAD
 *Note: As we are constantly getting new data days after days, our model is still improving!*
 
 ### Tkinter & Dash
+=======
+*Note: As we are constantly getting new data, our model is still improving!*
+
+### TkInter & Dash
+>>>>>>> 0e9960e00cd0d012567e20ad016e479f85ec5dde
 
 To visualize and simplify interactions with our datasets, we created a dashboard. 
 
@@ -152,7 +171,7 @@ However, as Tkinter felt a bit heavy on our machines, we decided to create an on
 
 ## Conclusion
 
-While this project was challenging, we have successfully designed a tool that can predict concert selling out with a precision of more than **85%** (a 17x uplift over the naive baseline model).
+While this project was challenging, we have successfully designed a tool that can predict concert selling out with a precision of more than **85%** (a 17x uplift over the naive baseline model). Going forward, we are trying to implement a more robust model that could predict the *clearing price* of a concert ticket, allowing artists and venues to price tickets so as to maximize revenue and fan engagement.
 
 We are convinced that this project could have important consequences on the music industry as a whole. Beyond revolutionizing the scalping industry, this could become invaluable for artists and concert halls and allow them to price their events much more efficiently. As another example, labels and artists could also use this tool to get a better of sense of performers' popularity and the demand for such events. 
 
