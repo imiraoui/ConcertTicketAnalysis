@@ -159,7 +159,7 @@ Below, we highlight a potential confusion matrix that maximizes precision  accor
 <center>
 
 |  | Predicted Not Sold-Out | Predicted Sold Out |
-|--------------|:----------------------:|-------------------:|
+|:--------------:|:----------------------:|-------------------:|
 | Not Sold-Out | 1725 | 3 |
 | Sold-Out | 173 | 18 |
 </center>
