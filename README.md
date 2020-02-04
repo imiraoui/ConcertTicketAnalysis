@@ -72,7 +72,7 @@ As we tried to understand what were the key drivers of concerts' popularity, we 
 
 Aside from songs' internal characteristics and popularity indicators, our variables seem to be relatively uncorrelated and we were able to weed out redundant information from the dataset.
 
-![Correlation Matrix](assets/img/correlation_matrix.jpg)
+![Correlation Matrix](assets/img/correlation_matrix.jpg =100x)
 
 Since pairwise-correlation is insufficient to visualize multicollinearity, we also used VIF analysis to better understand redundancies. 
 
@@ -84,11 +84,17 @@ Interestingly, regardless of the urban areas, **~6%** of concerts eventually sel
 
 While we may have expected that concerts sell-out primarily around the weekend, our analysis also indicates that sell-out rates are relatively uniform through the week days.
 
-![Proportion of sold out concerts per day of the week](assets/img/week_day.jpg)
+<center>
+![Proportion of sold out concerts per day of the week](assets/img/week_day.jpg =100x)
+</center>
 
 Initially, we thought that most of the concerts that sold out did so right after sales were released. However, as the graph below highlights it, the rate of sell-out seems to follow an exponential distribution.
 
-**Add: graphs with distributions used in the dashboard to show how long it took to sell out AND how long before a concert!!**
+<center>
+![Time for a Concert to sell out](assets/img/soldout_distrib.png =100x)
+</center>
+
+Interestingly, as highlighted by the graph above, ~50% of concerts sell out within 20 days of being announced and around 16 days before the concert happens.
 
 ### Visualizing distributions
 
@@ -107,9 +113,9 @@ To assess a model performance, we measure and bootstrap its precision for variou
 ### Logistic Regression
 
 We started by using a simple model: Logistic Regression and found the following results:
-
-![Logistic Regression Results](assets/img/logregres.png)
-
+<center>
+![Logistic Regression Results](assets/img/logregres.png =100x)
+</center>
 We highlighted the 95% confidence interval (found using Bootstrap) of the various metrics with colored shadows around the lines. The results were insufficient. The range of probability returned by the logistic regression was not wide enough (the model was never sure of a concert's ability to soldout), leading our model to predict only "not soldout concert" above a threshold of 0.5. Even applying over/undersampling techniques such as SMOTE did not help the results meaningfully. 
 
 To improve our results, we used a Random Forest:
@@ -136,7 +142,7 @@ Leveraging the [Hyperopt Python Library](https://github.com/hyperopt/hyperopt) a
 
 With our tuned LightGBM, we were able to get the following results on *February 2nd, 2020*: 
 
-**Insert confusion matrix and 2 graphs**
+**Insert Graph**
 
 *Note: As we are constantly getting new data on a daily basis, our model is still improving!*
 
