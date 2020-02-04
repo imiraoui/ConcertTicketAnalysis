@@ -72,7 +72,11 @@ As we tried to understand what were the key drivers of concerts' popularity, we 
 
 Aside from songs' internal characteristics and popularity indicators, our variables seem to be relatively uncorrelated and we were able to weed out redundant information from the dataset.
 
+<div align="center">
+
 ![Correlation Matrix](assets/img/correlation_matrix.jpg)
+
+</div>
 
 Since pairwise-correlation is insufficient to visualize multicollinearity, we also used VIF analysis to better understand redundancies. 
 
@@ -84,11 +88,11 @@ Interestingly, regardless of the urban areas, **~6%** of concerts eventually sel
 
 While we may have expected that concerts sell-out primarily around the weekend, our analysis also indicates that sell-out rates are relatively uniform through the week days.
 
-<center>
+<div align="center">
 
 ![Proportion of sold out concerts per day of the week](assets/img/week_day.jpg)
 
-</center>
+</div>
 
 The graphs below highlight the probability distribution of a concert selling out depending on:
 1. The time since the concert was announced (**<span style="color:red">red</span>**)
@@ -96,11 +100,11 @@ The graphs below highlight the probability distribution of a concert selling out
    
 Initially, we thought that most of the concerts that sold out did so right after sales were released. However, as it can be seen below, the rate of sell-out seems to follow an exponential distribution.
 
-<center>
+<div align="center">
 
 ![Time for a Concert to sell out](assets/img/soldout_distrib.png)
 
-</center>
+</div>
 
 Interestingly, as highlighted by the graph above, ~50% of concerts sell out within 20 days of being announced and around 16 days before the concert happens.
 
@@ -121,11 +125,11 @@ To assess a model performance, we measure and bootstrap its precision for variou
 ### Logistic Regression
 
 We started by using a simple model: Logistic Regression and found the following results:
-<center>
+<div align="center">
 
 ![Logistic Regression Results](assets/img/logregres.png)
 
-</center>
+</div>
 
 We highlighted the 95% confidence interval (found using Bootstrap) of the various metrics with colored shadows around the lines. The results were insufficient. The range of probability returned by the logistic regression was not wide enough (the model was never sure of a concert's ability to soldout), leading our model to predict only "not soldout concert" above a threshold of 0.5. Even applying over/undersampling techniques such as SMOTE did not help the results meaningfully. 
 
@@ -156,13 +160,14 @@ With our tuned LightGBM, we were able to get the following results on *February 
 **Insert Graph**
 
 Below, we highlight a potential confusion matrix that maximizes precision  according to illustrate our results:
-<center>
+<div align="center">
 
 |  | Predicted Not Sold-Out | Predicted Sold Out |
 |:--------------:|:----------------------:|-------------------:|
 | Not Sold-Out | 1725 | 3 |
 | Sold-Out | 173 | 18 |
-</center>
+
+</div>
 
 *Note: As we are constantly getting new data on a daily basis, our model is still improving!*
 
