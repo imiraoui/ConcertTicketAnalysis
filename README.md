@@ -78,9 +78,7 @@ Aside from songs' internal characteristics and popularity indicators, our variab
 
 </div>
 
-Since pairwise-correlation is insufficient to visualize multicollinearity, we also used VIF analysis to better understand redundancies. 
-
-**We found that ... - VIF conclusions to add**
+Since pairwise-correlation is insufficient to visualize multicollinearity, we also used VIF analysis to better understand redundancies. We used the results from the analysis to select and combine our variables furter.
 
 ### Going Beyond our Prejudice
 
@@ -94,10 +92,12 @@ While we may have expected that concerts sell-out primarily around the weekend, 
 
 </div>
 
+### Visualizing distributions
+
 The graphs below highlight the probability distribution of a concert selling out depending on:
 1. The time since the concert was announced (**<span style="color:red">red</span>**)
 2. The time remaining before the event (**<span style="color:blue">blue</span>**)
-   
+
 Initially, we thought that most of the concerts that sold out did so right after sales were released. However, as it can be seen below, the rate of sell-out seems to follow an exponential distribution.
 
 <div align="center">
@@ -107,10 +107,6 @@ Initially, we thought that most of the concerts that sold out did so right after
 </div>
 
 Interestingly, as highlighted by the graph above, ~50% of concerts sell out within 20 days of being announced and around 16 days before the concert happens.
-
-### Visualizing distributions
-
-**Insert graphs generated a while back visualizing distributions**
 
 ## 3. Finding the Best Model <a name="model"></a>
 
@@ -131,43 +127,55 @@ We started by using a simple model: Logistic Regression and found the following 
 
 </div>
 
-We highlighted the 95% confidence interval (found using Bootstrap) of the various metrics with colored shadows around the lines. The results were insufficient. The range of probability returned by the logistic regression was not wide enough (the model was never sure of a concert's ability to soldout), leading our model to predict only "not soldout concert" above a threshold of 0.5. Even applying over/undersampling techniques such as SMOTE did not help the results meaningfully. 
+We highlighted the 95% confidence interval (found using Bootstrap) of the various metrics with colored shadows around the lines. The results were insufficient. The range of probability returned by the logistic regression was not wide enough (the model was never sure of a concert's ability to soldout), leading our model to predict only "not soldout concert" above a threshold of 0.5. Even applying over/undersampling techniques such as [SMOTE](https://medium.com/erinludertblog/smote-synthetic-minority-over-sampling-technique-caada3df2c0a) did not help the results meaningfully. 
 
-To improve our results, we used a Random Forest:
 
-### Random Forest
-
-**ADD RESULTS RF**
+</div>
 
 ## 4. Final Results & Dashboard <a name="results"></a>
 
-In the end, we settled on using LightGBM. It provided us with numerous advantages including:
+### LightGBM
+
+We used LightGBM for its stability and ability to scale. It provided us with numerous advantages including:
 - Simplified class imbalance management
-- Efficient runtime
 - Advanced categorical variable handling
 - Ability to model complex nonlinear relationships
 
-### Hyperparameter Tuning
+#### Hyperparameter Tuning
 
 Being a boosting model, LightGBM has plenty of hyperparameters. We used Bayesian optimization techniques to find their optimal values.
 
 Leveraging the [Hyperopt Python Library](https://github.com/hyperopt/hyperopt) and LightGBM built-in cross-validation tool, we assessed the various hyperparameters and settled on the ones that would maximize our Area Under the Curve ([AUC](https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5)).
 
-### Results
+#### Results
 
 With our tuned LightGBM, we were able to get the following results on *February 2nd, 2020*: 
 
-**Insert Graph**
+![LightGBM Results](assets/img/boosting.png)
 
-Below, we highlight a potential confusion matrix that maximizes precision  according to illustrate our results:
+Below, we highlight a potential confusion matrix that maximizes precision to illustrate our results:
 <div align="center">
 
 |  | Predicted Not Sold-Out | Predicted Sold Out |
 |:--------------:|:----------------------:|-------------------:|
-| Not Sold-Out | 1725 | 3 |
-| Sold-Out | 173 | 18 |
+| **Not Sold-Out** | 1725 | 3 |
+| **Sold-Out** | 173 | 18 |
 
 </div>
+
+### Random Forest
+
+With our Random Forest, we were able to get the following results on *February 2nd, 2020*:
+
+![Random Forest Results](assets/img/random_forest.png)
+
+Below, we highlight a potential confusion matrix that maximizes precision (reaching an impressive ~96% precision in this case) again:
+<div align="center">
+
+|  | Predicted Not Sold-Out | Predicted Sold Out |
+|:--------------:|:----------------------:|-------------------:|
+| **Not Sold-Out** | 1721 | 1 |
+| **Sold-Out** | 159 | 26 |
 
 *Note: As we are constantly getting new data on a daily basis, our model is still improving!*
 
@@ -183,7 +191,7 @@ However, as Tkinter felt a bit heavy on our machines, we decided to create an on
 
 ## Conclusion
 
-While this project was challenging, we have successfully designed a tool that can predict concert selling out with a precision of more than **85%** (a 17x uplift over the naive baseline model). Going forward, we are trying to implement a more robust model that could predict the *clearing price* of a concert ticket, allowing artists and venues to price tickets so as to maximize revenue and fan engagement.
+While this project was challenging, we have successfully designed a tool that can predict concert selling out with a precision of more than **85%** (a 17x uplift over the naive baseline model). LightGBM and Random Forests provided with the best precision and consistently generated results between 85-95% precision. Going forward, we are trying to implement a more robust model that could predict the *clearing price* of a concert ticket, allowing artists and venues to price tickets so as to maximize revenue and fan engagement.
 
 We are convinced that this project could have important consequences on the music industry as a whole. Beyond revolutionizing the scalping industry, this could become invaluable for artists and concert halls and allow them to price their events much more efficiently. As another example, labels and artists could also use this tool to get a better of sense of performers' popularity and the demand for such events. 
 
