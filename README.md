@@ -177,6 +177,7 @@ Below, we highlight a potential confusion matrix that maximizes precision (reach
 | **Not Sold-Out** | 1721 | 1 |
 | **Sold-Out** | 159 | 26 |
 
+</div>
 *Note: As we are constantly getting new data on a daily basis, our model is still improving!*
 
 ### Tkinter & Dash
